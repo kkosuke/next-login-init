@@ -36,3 +36,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# 参考
+- https://zenn.dev/minguu42/articles/20210717-nextjs-typescript-auth
+  - Firebase プロジェクトの作成
+    - https://console.firebase.google.com/u/0/
+  - Authentication の有効化
+    - Authenticationのページに飛び、始める→Googleを選択
+  - Google プロバイダの有効化
+  - ウェブアプリの追加
+    - プロジェクトの概要に飛んで、</>のボタンから手続きを行う。
+  - .env.localファイルを作成
+  - npm i firebase
+  - lib/firebase.tsに、 firebase v9の設定を行う
+- https://zenn.dev/minguu42/articles/20210922-nextjs-firebase-v9
