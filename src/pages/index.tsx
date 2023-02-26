@@ -1,11 +1,23 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import { useUser, login, logout } from "../lib/auth";
+import { useRouter } from "next/router";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const user = useUser();
+  const router = useRouter();
+  const handleLogin = (): void => {
+    login().catch((error) => console.error(error));
+  };
+  const handleLogout = (): void => {
+    logout()
+      .then(() => router.reload())
+      .catch((error) => console.error(error));
+  };
   return (
     <>
       <Head>
@@ -20,13 +32,25 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.tsx</code>
           </p>
+          {user !== null ? (
+            <h2>ログインしている</h2>
+          ) : (
+            <h2>ログインしていない</h2>
+          )}
+          <div>
+            {user !== null ? (
+              <button onClick={handleLogout}>ログアウト</button>
+            ) : (
+              <button onClick={handleLogin}>ログイン</button>
+            )}
+          </div>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -119,5 +143,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
